@@ -1,7 +1,9 @@
-package com.ily.awesomepokertimer;
+package com.ily.awesomepokertimer.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ily.awesomepokertimer.R;
 
 public class MainActivity extends AppCompatActivity {
 
