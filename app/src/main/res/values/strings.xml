@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">APTimer</string>
+
+    <!-- Tabs -->
+    <string name="tab_saved">Saved</string>
+    <string name="tab_timer">Timer</string>
+    <string name="tab_settings">Settings</string>
+
 </resources>

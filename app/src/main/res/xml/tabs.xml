@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <tabs>
     <tab
-        id="@+id/tab_favorites"
-        icon="@drawable/ic_timer_black_24dp"
-        title="Timer" />
-    <tab
-        id="@+id/tab_nearby"
+        id="@+id/tab_saved"
         icon="@drawable/ic_save_black_24dp"
-        title="Saved" />
+        title="@string/tab_saved" />
+
     <tab
-        id="@+id/tab_friends"
+        id="@+id/tab_timer"
+        icon="@drawable/ic_timer_black_24dp"
+        title="@string/tab_timer" />
+
+    <tab
+        id="@+id/tab_settings"
         icon="@drawable/ic_settings_black_24dp"
-        title="Settings" />
+        title="@string/tab_settings" />
 </tabs>
