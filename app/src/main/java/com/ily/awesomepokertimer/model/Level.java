@@ -10,8 +10,8 @@ public class Level extends RealmObject {
 
     private int id;
     private long duration;
-    private int sBlind;
-    private int bBlind;
+    private int smallBlind;
+    private int bigBlind;
 
     public int getId() {
         return id;
@@ -29,19 +29,19 @@ public class Level extends RealmObject {
         this.duration = duration;
     }
 
-    public int getsBlind() {
-        return sBlind;
+    public int getSmallBlind() {
+        return smallBlind;
     }
 
-    public void setsBlind(int sBlind) {
-        this.sBlind = sBlind;
+    public void setSmallBlind(int smallBlind) {
+        this.smallBlind = smallBlind;
     }
 
-    public int getbBlind() {
-        return bBlind;
+    public int getBigBlind() {
+        return bigBlind;
     }
 
-    public void setbBlind(int bBlind) {
-        this.bBlind = bBlind;
+    public void setBigBlind(int bigBlind) {
+        this.bigBlind = bigBlind;
     }
 }
