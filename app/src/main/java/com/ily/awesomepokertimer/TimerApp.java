@@ -24,7 +24,9 @@ public class TimerApp extends Application {
         super.onCreate();
 
         //Fabric init
-        Fabric.with(this, new Crashlytics());
+        if (!BuildConfig.DEBUG) {
+            Fabric.with(this, new Crashlytics());
+        }
 
         //Realm init
         Realm.init(this);

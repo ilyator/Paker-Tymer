@@ -2,6 +2,7 @@ package com.ily.awesomepokertimer.util;
 
 import android.content.Context;
 
+import com.ily.awesomepokertimer.R;
 import com.ily.awesomepokertimer.model.Level;
 import com.ily.awesomepokertimer.model.Tournament;
 
@@ -14,28 +15,33 @@ import io.realm.RealmList;
 
 public class TournamentsUtil {
 
-    public static void createDefaultTournaments(Context context){
+    public static void createDefaultTournaments(Context context) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        Tournament tournament = new Tournament();
-        Level level = new Level();
-        level.setSmallBlind(10);
-        level.setBigBlind(20);
-        level.setDuration(1000 * 60 * 60); //60mins
-        tournament.setId(0);
-        tournament.setLevels(new RealmList<>(level));
-        tournament.setName("Default");
-        realm.copyToRealmOrUpdate(tournament);
-        Tournament tournament1 = new Tournament();
-        Level level1 = new Level();
-        level1.setSmallBlind(10);
-        level1.setBigBlind(20);
-        level1.setDuration(1000 * 60 * 60); //60mins
-        tournament1.setId(1);
-        tournament1.setLevels(new RealmList<>(level1));
-        tournament1.setName("Default");
-        realm.copyToRealmOrUpdate(tournament1);
+        for (int i = 0; i < 10; i++) {
+            Tournament tournament = new Tournament();
+            Level level = new Level();
+            level.setSmallBlind(10);
+            level.setBigBlind(20);
+            level.setDuration(1000 * 60 * 60); //60mins
+            tournament.setIndex(i);
+            tournament.setLevels(new RealmList<>(level));
+            tournament.setName("Default" + String.valueOf(i));
+            realm.copyToRealm(tournament);
+        }
         realm.commitTransaction();
+    }
+
+    public static String getBlindsInfo(Context context, Tournament tournament) {
+        RealmList<Level> levels = tournament.getLevels();
+        int startBlind = levels.get(0).getBigBlind();
+        int endBlind = levels.get(levels.size()-1).getBigBlind();
+        return String.format(context.getString(R.string.blinds_d_d), startBlind, endBlind);
+    }
+
+    public static String getLevelsInfo(Context context, Tournament tournament) {
+        RealmList<Level> levels = tournament.getLevels();
+        return String.format(context.getString(R.string.d_levels_d_minutes), levels.size(), tournament.getLevels().get(0).getDuration()/1000/60);
     }
 
 }

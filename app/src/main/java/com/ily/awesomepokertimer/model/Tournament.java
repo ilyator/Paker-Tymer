@@ -2,7 +2,6 @@ package com.ily.awesomepokertimer.model;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by ily on 20.10.2016.
@@ -10,8 +9,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class Tournament extends RealmObject {
 
-    @PrimaryKey
-    private int id;
+    private int index;
     private String name;
     private RealmList<Level> levels;
     private boolean isActive;
@@ -19,12 +17,12 @@ public class Tournament extends RealmObject {
     private Level currentLevel;
     private long currentLevelTime;
 
-    public int getId() {
-        return id;
+    public int getIndex() {
+        return index;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getName() {

@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements OnTabSelectListen
     FrameLayout container;
 
     private Fragment fragment;
+    private int currentTabId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +38,24 @@ public class MainActivity extends AppCompatActivity implements OnTabSelectListen
     @Override
     public void onTabSelected(@IdRes int tabId) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        switch (tabId) {
-            case R.id.tab_saved:
-                fragment = SavedFragment.newInstance();
-                break;
-            case R.id.tab_timer:
-                fragment = TimerFragment.newInstance();
-                break;
-            case R.id.tab_settings:
-                fragment = SettingsFragment.newInstance();
-                break;
+        if(currentTabId != tabId) {
+            currentTabId = tabId;
+            switch (tabId) {
+                case R.id.tab_saved:
+                    fragment = SavedFragment.newInstance();
+                    break;
+                case R.id.tab_timer:
+                    fragment = TimerFragment.newInstance();
+                    break;
+                case R.id.tab_settings:
+                    fragment = SettingsFragment.newInstance();
+                    break;
+            }
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.contentContainer, fragment, fragment.getClass().getName())
+                    .commit();
         }
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.contentContainer, fragment, fragment.getClass().getName())
-                .commit();
     }
 
 }

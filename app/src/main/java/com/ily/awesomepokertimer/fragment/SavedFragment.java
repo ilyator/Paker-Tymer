@@ -2,6 +2,7 @@ package com.ily.awesomepokertimer.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.ily.awesomepokertimer.model.Tournament;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
+import io.realm.Sort;
 
 /**
  * Created by ily on 20.10.2016.
@@ -27,6 +29,8 @@ public class SavedFragment extends Fragment {
 
     @BindView(R.id.rv_saved)
     RecyclerView rvSaved;
+    @BindView(R.id.btn_add)
+    FloatingActionButton btnAdd;
 
     private Realm realm;
     private SavedTourneysAdapter adapter;
@@ -47,8 +51,13 @@ public class SavedFragment extends Fragment {
 
         ButterKnife.bind(this, root);
 
-        adapter = new SavedTourneysAdapter(realm.copyFromRealm(realm.where(Tournament.class).findAll()));
+        setUpRecyclerView();
 
+        return root;
+    }
+
+    private void setUpRecyclerView() {
+        adapter = new SavedTourneysAdapter(getContext(), realm.where(Tournament.class).findAllSorted("index", Sort.ASCENDING));
         rvSaved.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -57,10 +66,15 @@ public class SavedFragment extends Fragment {
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rvSaved);
-
-        return root;
+        rvSaved.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 && btnAdd.isShown())
+                    btnAdd.hide();
+                if (dy < 0 && !btnAdd.isShown())
+                    btnAdd.show();
+            }
+        });
     }
-
-
 
 }
