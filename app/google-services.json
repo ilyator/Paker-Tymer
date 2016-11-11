@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1041119254320",
+    "firebase_url": "https://awesomepokertimer.firebaseio.com",
+    "project_id": "awesomepokertimer",
+    "storage_bucket": "awesomepokertimer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041119254320:android:91f9501ffc44e47c",
+        "android_client_info": {
+          "package_name": "com.ily.awesomepokertimer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041119254320-43p9rlpjebr72lctacf3cfvrjekt7964.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ily.awesomepokertimer",
+            "certificate_hash": "492FE2EA41D476F0048CDD80CDE1DF65D6862047"
+          }
+        },
+        {
+          "client_id": "1041119254320-1lkhnuim40muok4rk8b3pnuhkue7bvha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqcB5kalhXdwTmUpt9Q-E8dPnknqDebxA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041119254320-1lkhnuim40muok4rk8b3pnuhkue7bvha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

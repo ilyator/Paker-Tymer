@@ -16,9 +16,12 @@ import com.ily.awesomepokertimer.adapter.SavedTourneysAdapter;
 import com.ily.awesomepokertimer.adapter.SimpleItemTouchHelperCallback;
 import com.ily.awesomepokertimer.model.Tournament;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
+import io.realm.RealmResults;
 import io.realm.Sort;
 
 /**
@@ -57,7 +60,9 @@ public class SavedFragment extends Fragment {
     }
 
     private void setUpRecyclerView() {
-        adapter = new SavedTourneysAdapter(getContext(), realm.where(Tournament.class).findAllSorted("index", Sort.ASCENDING));
+        RealmResults<Tournament> tournaments = realm.where(Tournament.class).findAllSorted("index", Sort.ASCENDING);
+        List<Tournament> tournamentsList = realm.copyFromRealm(tournaments);
+        adapter = new SavedTourneysAdapter(getContext(), tournaments, tournamentsList);
         rvSaved.setHasFixedSize(true);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);

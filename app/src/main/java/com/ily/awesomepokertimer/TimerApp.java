@@ -4,10 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.crashlytics.android.Crashlytics;
 import com.ily.awesomepokertimer.util.TournamentsUtil;
 
-import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -22,12 +20,6 @@ public class TimerApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        //Fabric init
-        if (!BuildConfig.DEBUG) {
-            Fabric.with(this, new Crashlytics());
-        }
-
         //Realm init
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder().build();

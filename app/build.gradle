@@ -35,7 +35,7 @@ def renameAPK(variant, defaultConfig, buildType) {
         def formattedDate = new Date().format('dd-MM-yyyy')
 
         def file = output.packageApplication.outputFile
-        def fileName = formattedDate + "-aptimer-"+buildType+" ($defaultConfig.versionCode).apk"
+        def fileName = formattedDate + "-aptimer-" + buildType + " ($defaultConfig.versionCode).apk"
         output.packageApplication.outputFile = new File(file.parent, fileName)
     }
 }
@@ -48,7 +48,7 @@ dependencies {
     compile 'com.roughike:bottom-bar:2.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
-        transitive = true;
-    }
+    compile 'com.google.firebase:firebase-crash:9.8.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
