@@ -18,7 +18,25 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            android.applicationVariants.all { variant ->
+                renameAPK(variant, defaultConfig, 'release')
+            }
         }
+        debug {
+            android.applicationVariants.all { variant ->
+                renameAPK(variant, defaultConfig, 'debug')
+            }
+        }
+    }
+}
+
+def renameAPK(variant, defaultConfig, buildType) {
+    variant.outputs.each { output ->
+        def formattedDate = new Date().format('dd-MM-yyyy')
+
+        def file = output.packageApplication.outputFile
+        def fileName = formattedDate + "-aptimer-"+buildType+" ($defaultConfig.versionCode).apk"
+        output.packageApplication.outputFile = new File(file.parent, fileName)
     }
 }
 

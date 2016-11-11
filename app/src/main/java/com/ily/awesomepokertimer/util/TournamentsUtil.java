@@ -15,7 +15,7 @@ import io.realm.RealmList;
 
 public class TournamentsUtil {
 
-    public static void createDefaultTournaments(Context context) {
+    public static void createDefaultTournaments() {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         for (int i = 0; i < 10; i++) {
@@ -23,7 +23,7 @@ public class TournamentsUtil {
             Level level = new Level();
             level.setSmallBlind(10);
             level.setBigBlind(20);
-            level.setDuration(1000 * 60 * 60); //60mins
+            level.setDuration(1000 * 60 * 60);
             tournament.setIndex(i);
             tournament.setLevels(new RealmList<>(level));
             tournament.setName("Default" + String.valueOf(i));

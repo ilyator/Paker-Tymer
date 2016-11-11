@@ -36,10 +36,10 @@ public class TimerApp extends Application {
         initDefaultTournaments();
     }
 
-    private void initDefaultTournaments(){
+    private void initDefaultTournaments() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(sharedPreferences.getBoolean(IS_FIRST_LAUNCH, true)){
-            TournamentsUtil.createDefaultTournaments(this);
+        if (sharedPreferences.getBoolean(IS_FIRST_LAUNCH, true)) {
+            TournamentsUtil.createDefaultTournaments();
             sharedPreferences.edit().putBoolean(IS_FIRST_LAUNCH, false).apply();
         }
     }
