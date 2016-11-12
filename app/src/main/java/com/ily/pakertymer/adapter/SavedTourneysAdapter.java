@@ -1,4 +1,4 @@
-package com.ily.awesomepokertimer.adapter;
+package com.ily.pakertymer.adapter;
 
 import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ily.awesomepokertimer.R;
-import com.ily.awesomepokertimer.listener.ItemTouchHelperAdapter;
-import com.ily.awesomepokertimer.model.Tournament;
-import com.ily.awesomepokertimer.util.TournamentsUtil;
+import com.ily.pakertymer.R;
+import com.ily.pakertymer.listener.ItemTouchHelperAdapter;
+import com.ily.pakertymer.model.Tournament;
+import com.ily.pakertymer.util.TournamentsUtil;
 
 import java.util.Collections;
 import java.util.List;

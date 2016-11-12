@@ -1,4 +1,4 @@
-package com.ily.awesomepokertimer.model;
+package com.ily.pakertymer.model;
 
 import io.realm.RealmObject;
 

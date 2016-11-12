@@ -1,4 +1,4 @@
-package com.ily.awesomepokertimer.fragment;
+package com.ily.pakertymer.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

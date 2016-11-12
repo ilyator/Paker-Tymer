@@ -1,10 +1,10 @@
-package com.ily.awesomepokertimer;
+package com.ily.pakertymer;
 
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.ily.awesomepokertimer.util.TournamentsUtil;
+import com.ily.pakertymer.util.TournamentsUtil;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

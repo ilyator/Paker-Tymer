@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3471a9</color>
     <color name="colorPrimaryDark">#245a8c</color>
     <color name="colorAccent">#3471a9</color>
+
+    <!-- Timer view -->
+    <color name="timer_red">#c40f00</color>
+    <color name="timer_yellow">#e2d801</color>
+    <color name="timer_green_last">#10ba07</color>
+
 </resources>

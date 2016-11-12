@@ -1,4 +1,4 @@
-package com.ily.awesomepokertimer.fragment;
+package com.ily.pakertymer.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ily.awesomepokertimer.R;
-import com.ily.awesomepokertimer.adapter.SavedTourneysAdapter;
-import com.ily.awesomepokertimer.adapter.SimpleItemTouchHelperCallback;
-import com.ily.awesomepokertimer.model.Tournament;
+import com.ily.pakertymer.R;
+import com.ily.pakertymer.adapter.SavedTourneysAdapter;
+import com.ily.pakertymer.adapter.SimpleItemTouchHelperCallback;
+import com.ily.pakertymer.model.Tournament;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25"
     defaultConfig {
-        applicationId "com.ily.awesomepokertimer"
+        applicationId "com.ily.pakertymer"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

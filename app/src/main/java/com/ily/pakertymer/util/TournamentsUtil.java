@@ -1,10 +1,10 @@
-package com.ily.awesomepokertimer.util;
+package com.ily.pakertymer.util;
 
 import android.content.Context;
 
-import com.ily.awesomepokertimer.R;
-import com.ily.awesomepokertimer.model.Level;
-import com.ily.awesomepokertimer.model.Tournament;
+import com.ily.pakertymer.R;
+import com.ily.pakertymer.model.Level;
+import com.ily.pakertymer.model.Tournament;
 
 import io.realm.Realm;
 import io.realm.RealmList;

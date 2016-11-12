@@ -1,11 +1,11 @@
-package com.ily.awesomepokertimer.adapter;
+package com.ily.pakertymer.adapter;
 
 import android.graphics.Canvas;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
-import com.ily.awesomepokertimer.listener.ItemTouchHelperAdapter;
+import com.ily.pakertymer.listener.ItemTouchHelperAdapter;
 
 /**
  * Created by ily on 21.10.2016.

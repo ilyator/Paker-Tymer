@@ -1,4 +1,4 @@
-package com.ily.awesomepokertimer.activity;
+package com.ily.pakertymer.activity;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.ily.awesomepokertimer.R;
-import com.ily.awesomepokertimer.fragment.SavedFragment;
-import com.ily.awesomepokertimer.fragment.SettingsFragment;
-import com.ily.awesomepokertimer.fragment.TimerFragment;
+import com.ily.pakertymer.R;
+import com.ily.pakertymer.fragment.SavedFragment;
+import com.ily.pakertymer.fragment.SettingsFragment;
+import com.ily.pakertymer.fragment.TimerFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 

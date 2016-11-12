@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "1041119254320",
-    "firebase_url": "https://awesomepokertimer.firebaseio.com",
-    "project_id": "awesomepokertimer",
-    "storage_bucket": "awesomepokertimer.appspot.com"
+    "project_number": "575900480093",
+    "firebase_url": "https://pakertymer.firebaseio.com",
+    "project_id": "pakertymer",
+    "storage_bucket": "pakertymer.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1041119254320:android:91f9501ffc44e47c",
+        "mobilesdk_app_id": "1:575900480093:android:4255713e0e68625c",
         "android_client_info": {
-          "package_name": "com.ily.awesomepokertimer"
+          "package_name": "com.ily.pakertymer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1041119254320-43p9rlpjebr72lctacf3cfvrjekt7964.apps.googleusercontent.com",
+          "client_id": "575900480093-j5vp2tkmd9741nhbfne6o3tecmjmpr2q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ily.awesomepokertimer",
+            "package_name": "com.ily.pakertymer",
             "certificate_hash": "492FE2EA41D476F0048CDD80CDE1DF65D6862047"
           }
         },
         {
-          "client_id": "1041119254320-1lkhnuim40muok4rk8b3pnuhkue7bvha.apps.googleusercontent.com",
+          "client_id": "575900480093-s3v8afub4dnmmga2g15q1v28ljng8ttg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAqcB5kalhXdwTmUpt9Q-E8dPnknqDebxA"
+          "current_key": "AIzaSyChRzKfbPbqNZjnk55x8CYoyOd8F1eP2_g"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1041119254320-1lkhnuim40muok4rk8b3pnuhkue7bvha.apps.googleusercontent.com",
+              "client_id": "575900480093-s3v8afub4dnmmga2g15q1v28ljng8ttg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
