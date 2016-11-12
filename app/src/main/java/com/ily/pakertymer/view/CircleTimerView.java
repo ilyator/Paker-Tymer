@@ -2,7 +2,6 @@ package com.ily.pakertymer.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -17,24 +16,19 @@ import android.widget.ImageView;
 import com.ily.pakertymer.R;
 import com.ily.pakertymer.util.MeasureUtil;
 
-import java.util.Calendar;
-
 /**
  * Created by ily on 22.08.2016.
  */
 public class CircleTimerView extends ImageView {
 
-    private Calendar endDate;
+    private long levelFullTime, levelCurrentTime;
 
     private boolean mProgressBarEnabled;
     private int mProgressWidth = MeasureUtil.dpToPx(getContext(), 6f);
-    private float mOriginalX = -1;
-    private float mOriginalY = -1;
-    private boolean mButtonPositionSaved;
     private RectF mProgressCircleBounds = new RectF();
     private Paint mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private long mLastTimeAnimated;
-    private float mSpinSpeed = 195.0f;
+    private float mSpinSpeed;
     private float mCurrentProgress;
     private float mTargetProgress;
     private int mProgress;
@@ -53,83 +47,34 @@ public class CircleTimerView extends ImageView {
 
     public CircleTimerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs, defStyleAttr);
+        init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public CircleTimerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init(context, attrs, defStyleAttr);
+        init();
     }
 
-    private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray attr = context.obtainStyledAttributes(attrs, R.styleable.FloatingActionButton, defStyleAttr, 0);
-
-            mProgress =  0;
-            mShouldSetProgress = true;
-
-        attr.recycle();
-
-        if (isInEditMode()) {
-            if (mShouldSetProgress) {
-                saveButtonOriginalPosition();
-                setProgress(mProgress, false);
-            }
-        }
-
+    private void init() {
+        mProgress = 0;
         setClickable(true);
     }
 
-    public void setEndDate(Calendar endDate) {
-        this.endDate = endDate;
+    public void setLevelFullTime(long levelFullTime) {
+        this.levelFullTime = levelFullTime;
+    }
+
+    public void setLevelCurrentTime(long levelCurrentTime) {
+        this.levelCurrentTime = levelCurrentTime;
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        saveButtonOriginalPosition();
-
-        if (mShouldSetProgress) {
-            setProgress(mProgress, mAnimateProgress);
-            mShouldSetProgress = false;
-        }
-
         super.onSizeChanged(w, h, oldw, oldh);
 
         setupProgressBounds();
         setupProgressBarPaints();
-    }
-
-    public synchronized void setProgress(int progress, boolean animate) {
-        mProgress = progress;
-        mAnimateProgress = animate;
-
-        if (!mButtonPositionSaved) {
-            mShouldSetProgress = true;
-            return;
-        }
-
-        mProgressBarEnabled = true;
-        setupProgressBounds();
-        saveButtonOriginalPosition();
-
-        if (progress < 0) {
-            progress = 0;
-        } else if (progress > mProgressMax) {
-            progress = mProgressMax;
-        }
-
-        if (progress == mTargetProgress) {
-            return;
-        }
-
-        mTargetProgress = mProgressMax > 0 ? (progress / (float) mProgressMax) * 360 : 0;
-        mLastTimeAnimated = SystemClock.uptimeMillis();
-
-        if (!animate) {
-            mCurrentProgress = mTargetProgress;
-        }
-
-        invalidate();
     }
 
     public synchronized int getProgress() {
@@ -140,27 +85,16 @@ public class CircleTimerView extends ImageView {
         mProgressBarEnabled = false;
     }
 
-    public void startAnimation(){
-        long curTime = Calendar.getInstance().getTimeInMillis();
-        if(endDate.getTimeInMillis() - curTime>0) {
-            float progress = (float) ((endDate.getTimeInMillis() - curTime) * 100) / (1000 * 60 * 15);
-            mProgress = (int) progress;
-            mCurrentProgress = (progress / (float) mProgressMax) * 360;
-            mSpinSpeed = mCurrentProgress / ((float)(Math.abs(endDate.getTimeInMillis() - curTime)) / 1000);
-            mTargetProgress = 0;
-            mLastTimeAnimated = SystemClock.uptimeMillis();
-            mProgressBarEnabled = true;
-            invalidate();
-        } else {
-            mProgressBarEnabled = true;
-            setupProgressBounds();
-            saveButtonOriginalPosition();
-            mTargetProgress = 0;
-            mCurrentProgress = 0;
-            mProgress = 0;
-            mLastTimeAnimated = SystemClock.uptimeMillis();
-            invalidate();
-        }
+    public void startAnimation() {
+        float progress = (float) ((levelFullTime - levelCurrentTime) * 100) / levelFullTime;
+        mProgress = (int) progress;
+        mCurrentProgress = (progress / (float) mProgressMax) * 360;
+        mSpinSpeed = mCurrentProgress / ((float) levelCurrentTime / 1000);
+        mTargetProgress = 0;
+        mLastTimeAnimated = SystemClock.uptimeMillis();
+        mProgressBarEnabled = true;
+        invalidate();
+
     }
 
     @Override
@@ -218,17 +152,14 @@ public class CircleTimerView extends ImageView {
     }
 
     private void setupProgressBarPaints() {
-
         mProgressPaint.setStyle(Paint.Style.STROKE);
         mProgressPaint.setStrokeWidth(mProgressWidth);
-        int [] resIds = new int[] {
-                ResourcesCompat.getColor(getResources(), R.color.timer_green_last, null),
+        int[] resIds = new int[]{
+                ResourcesCompat.getColor(getResources(), R.color.timer_red, null),
                 ResourcesCompat.getColor(getResources(), R.color.timer_yellow, null),
-                ResourcesCompat.getColor(getResources(), R.color.timer_red, null)};
+                ResourcesCompat.getColor(getResources(), R.color.timer_green_last, null)};
 
-        Shader shader = new SweepGradient(getWidth() / 2, getHeight() / 2,
-                resIds, null);
-
+        Shader shader = new SweepGradient(getWidth() / 2, getHeight() / 2, resIds, null);
 
         mProgressPaint.setShader(shader);
     }
@@ -242,20 +173,6 @@ public class CircleTimerView extends ImageView {
                 calculateMeasuredWidth() - circleInsetHorizontal - mProgressWidth / 2,
                 calculateMeasuredHeight() - circleInsetVertical - mProgressWidth / 2
         );
-    }
-
-    private void saveButtonOriginalPosition() {
-        if (!mButtonPositionSaved) {
-            if (mOriginalX == -1) {
-                mOriginalX = getX();
-            }
-
-            if (mOriginalY == -1) {
-                mOriginalY = getY();
-            }
-
-            mButtonPositionSaved = true;
-        }
     }
 
 }

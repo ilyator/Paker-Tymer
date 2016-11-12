@@ -21,12 +21,15 @@ public class TournamentsUtil {
         for (int i = 0; i < 10; i++) {
             Tournament tournament = new Tournament();
             Level level = new Level();
+            level.setId(i);
             level.setSmallBlind(10);
             level.setBigBlind(20);
-            level.setDuration(1000 * 60 * 60);
+            level.setDuration(1000 * 60 * 20);
             tournament.setIndex(i);
             tournament.setLevels(new RealmList<>(level));
+            tournament.setCurrentLevel(level);
             tournament.setName("Default" + String.valueOf(i));
+            tournament.setCurrentLevelTime(1000 * 60 * 5);
             realm.copyToRealm(tournament);
         }
         realm.commitTransaction();

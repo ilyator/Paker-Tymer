@@ -2,6 +2,7 @@ package com.ily.pakertymer.model;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by ily on 20.10.2016.
@@ -9,6 +10,7 @@ import io.realm.RealmObject;
 
 public class Tournament extends RealmObject {
 
+    @PrimaryKey
     private int index;
     private String name;
     private RealmList<Level> levels;

@@ -4,7 +4,11 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.ily.pakertymer.model.Level;
+import com.ily.pakertymer.model.Tournament;
 import com.ily.pakertymer.util.TournamentsUtil;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -15,6 +19,8 @@ import io.realm.RealmConfiguration;
 
 public class TimerApp extends Application {
 
+    public static AtomicInteger tournamentNextId, levelNextId;
+
     private static final String IS_FIRST_LAUNCH = "isFirstLaunch";
 
     @Override
@@ -24,8 +30,9 @@ public class TimerApp extends Application {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder().build();
         Realm.setDefaultConfiguration(config);
-
         initDefaultTournaments();
+        tournamentNextId = new AtomicInteger(Realm.getDefaultInstance().where(Tournament.class).max("index").intValue());
+        levelNextId = new AtomicInteger(Realm.getDefaultInstance().where(Level.class).max("id").intValue());
     }
 
     private void initDefaultTournaments() {

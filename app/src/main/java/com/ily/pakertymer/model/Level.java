@@ -1,6 +1,7 @@
 package com.ily.pakertymer.model;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by ily on 20.10.2016.
@@ -8,6 +9,7 @@ import io.realm.RealmObject;
 
 public class Level extends RealmObject {
 
+    @PrimaryKey
     private int id;
     private long duration;
     private int smallBlind;
