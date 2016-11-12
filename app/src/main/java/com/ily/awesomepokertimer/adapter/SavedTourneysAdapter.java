@@ -105,11 +105,19 @@ public class SavedTourneysAdapter extends RecyclerView.Adapter<SavedTourneysAdap
     }
 
     @Override
-    public boolean onItemMove(int fromPosition, int toPosition) {
-        realm.beginTransaction();
-        tournaments.get(fromPosition).setIndex(toPosition);
-        tournaments.get(toPosition).setIndex(fromPosition);
-        realm.commitTransaction();
+    public boolean onItemMove(final int fromPosition, final int toPosition) {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                try {
+                    realm.where(Tournament.class).equalTo("index", fromPosition).findFirst().setIndex(toPosition);
+                    realm.where(Tournament.class).equalTo("index", toPosition).findFirst().setIndex(fromPosition);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
         tournamentsList.get(fromPosition).setIndex(toPosition);
         tournamentsList.get(toPosition).setIndex(fromPosition);
@@ -128,10 +136,17 @@ public class SavedTourneysAdapter extends RecyclerView.Adapter<SavedTourneysAdap
     }
 
     @Override
-    public void onItemDismiss(int position) {
-        realm.beginTransaction();
-        tournaments.get(position).deleteFromRealm();
-        realm.commitTransaction();
+    public void onItemDismiss(final int position) {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                try {
+                    realm.where(Tournament.class).equalTo("index", position).findFirst().deleteFromRealm();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
         tournamentsList.remove(position);
         notifyItemRemoved(position);
     }

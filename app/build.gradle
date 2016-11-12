@@ -33,7 +33,6 @@ android {
 def renameAPK(variant, defaultConfig, buildType) {
     variant.outputs.each { output ->
         def formattedDate = new Date().format('dd-MM-yyyy')
-
         def file = output.packageApplication.outputFile
         def fileName = formattedDate + "-aptimer-" + buildType + " ($defaultConfig.versionCode).apk"
         output.packageApplication.outputFile = new File(file.parent, fileName)
