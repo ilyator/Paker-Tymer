@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ImageButtonLevelNavigation" parent="Widget.AppCompat.ImageButton">
+        <style name="ImageButtonLevelNavigation" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">@drawable/selector_level_nav_btn</item>
     </style>
 
