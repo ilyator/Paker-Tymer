@@ -1,6 +1,10 @@
 # built application files
 *.apk
 *.ap_
+*.aab
+app/release/
+app/sandbox/release/
+app/production/release/
 
 # files for the dex VM
 *.dex
@@ -14,10 +18,10 @@ gen/
 /.classpath
 /.project
 /.settings
+app/schemas
 
 # Local configuration file (sdk path, etc)
 local.properties
-
 build.xml
 
 # The IntelliJ .iws file tracks every window position, etc,
@@ -26,7 +30,13 @@ build.xml
 /out
 
 #intellij files
-.idea/workspace.xml
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/.idea/caches/build_file_checksums.ser
 
 # OSX files
 .DS_Store
@@ -34,11 +44,15 @@ build.xml
 # Android Studio
 .idea
 *.iml
-app/app.iml
 
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
 .gradle
 build/
 
-# Keystore files
-*.jks
+# Log Files
+*.log
+
+com_crashlytics_export_strings.xml
+crashlytics-build.properties
+/captures
+.externalNativeBuild
